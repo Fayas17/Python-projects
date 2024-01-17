@@ -1,0 +1,39 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        {% for i in details %}
+        <div class="col-lg-2 col-md-4 col-sm-6 grid-margin stretch-card"> <!-- Adjust the column classes based on your design -->
+          <div class="card">
+            <div class="card-body text-center">
+              <a href="{% url 'view_genres' i.id %}">
+                <img src="{{ i.poster.url }}" class="card-img-top img-fluid" alt="{{ i.name }}"> <!-- Add img-fluid class for responsive images -->
+                <h5 class="card-title mt-3">{{ i.name }}</h5>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+      </div>
+    </footer>
+    <!-- partial -->
+  </div>
+
+{% endblock %}

@@ -1,0 +1,245 @@
+{% extends 'index.html' %}
+
+
+{% load static %}
+
+
+{% block movies %}
+
+<section class="iq-main-slider p-0">
+    <div id="tvshows-slider">
+      {% for i in details %}
+       <div>
+          <a href="{% url 'show_details' i.id %}">
+             <div class="shows-img">
+                <img src="{{i.poster.url}}" class="w-100" alt="">
+                <div class="shows-content">
+                   <h4 class="text-white mb-1">{{i.name}}</h4>
+                   <div class="movie-time d-flex align-items-center">
+                      <div class="badge badge-secondary p-1 mr-2">13+</div>
+                      <span class="text-white">2h 20m</span>
+                   </div>
+                </div>
+             </div>
+          </a>
+       </div> 
+       {% endfor %}
+    </div>
+    <div class="dropdown genres-box">
+       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Genres
+       </button>
+       <div class="dropdown-menu three-column" aria-labelledby="dropdownMenuButton">
+         {% for i in final_list %}
+          <a class="dropdown-item" href="{% url 'filtered_movies' name=i %}">{{ i }}</a>
+          {% endfor %}
+       </div>
+    </div>
+ </section>
+ <!-- Slider End -->
+ <!-- MainContent -->
+ <div class="main-content">
+    <section id="iq-favorites">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-sm-12 overflow-hidden">
+                <div class="iq-main-header d-flex align-items-center just  y-content-between">
+                   <h4 class="main-title">drama</h4>
+                </div>
+                <div class="favorites-contens">
+                   <ul class="favorites-slider list-inline  row p-0 mb-0">
+                     {% for i in genre%}
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{{i.movie_name.poster.url}}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>The Last Breath</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">5+</div>
+                                     <span class="text-white">2h 30m</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play Now
+                                     </span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                      {% endfor %}
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+    <section id="iq-upcoming-movie">
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-sm-12 overflow-hidden">
+                <div class="iq-main-header d-flex align-items-center justify-content-between">
+                   <h4 class="main-title">Best Bengali Movies</h4>
+                </div>
+                <div class="upcoming-contens">
+                   <ul class="favorites-slider list-inline row p-0 mb-0">
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{% static 'images/movies/01.jpg' %}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>The Illusion</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">10+</div>
+                                     <span class="text-white">3h 15m</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play
+                                        Now</span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{% static 'images/movies/02.jpg' %}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>Burning</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">13+</div>
+                                     <span class="text-white">2h 20m</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play
+                                        Now</span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{% static 'images/movies/03.jpg' %}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>Hubby Kubby</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">9+</div>
+                                     <span class="text-white">2h 40m</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play
+                                        Now</span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{% static 'images/movies/04.jpg' %}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>Open Dead Shot</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">16+</div>
+                                     <span class="text-white">1h 40m</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play
+                                        Now</span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                      <li class="slide-item">
+                         <a href="movie-details.html">
+                            <div class="block-images position-relative">
+                               <div class="img-box">
+                                  <img src="{% static 'images/movies/05.jpg' %}" class="img-fluid" alt="">
+                               </div>
+                               <div class="block-description">
+                                  <h6>Jumboo Queen</h6>
+                                  <div class="movie-time d-flex align-items-center my-2">
+                                     <div class="badge badge-secondary p-1 mr-2">15+</div>
+                                     <span class="text-white">3h</span>
+                                  </div>
+                                  <div class="hover-buttons">
+                                     <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                        Play
+                                        Now</span>
+                                  </div>
+                               </div>
+                               <div class="block-social-info">
+                                  <ul class="list-inline p-0 m-0 music-play-lists">
+                                     <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                     <li><span><i class="ri-heart-fill"></i></span></li>
+                                     <li><span><i class="ri-add-line"></i></span></li>
+                                  </ul>
+                               </div>
+                            </div>
+                         </a>
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+
+{% endblock %}

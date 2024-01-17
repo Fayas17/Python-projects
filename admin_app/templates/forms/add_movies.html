@@ -1,0 +1,69 @@
+{% extends 'admin_index.html' %}
+
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+     <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Movies</h4>
+                <form class="forms-sample" action="{% url 'add_movies' %}" method="post" enctype="multipart/form-data" required>
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="moviename">Movie Name</label>
+                    <input type="text" class="form-control" id="moviename" placeholder="Movie Name" name="moviename">
+                  </div>
+                  <div class="form-group">
+                    <label for="movieyear">Year</label>
+                    <input type="number" class="form-control" id="movieyear" placeholder="Year" name="movieyear">
+                  </div>
+                  <div class="form-group">
+                    <label for="movielang">Language</label>
+                    <input type="text" class="form-control" id="movielang" placeholder="Language" name="movielang">
+                  </div>
+                  <div class="form-group">
+                    <label for="video">Select Poster:</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="image" name="image" accept="image/*" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="video">Add Trailer:</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="video" name="trailer" accept="video/*">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="video">Add Movie:</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="video" name="video" accept="video/*">
+                      </div>
+                    </div>
+                  </div>
+                
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <!-- <button class="btn btn-dark">Cancel</button> -->
+                </form>
+                
+                
+                
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}

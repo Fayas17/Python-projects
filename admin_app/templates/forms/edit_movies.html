@@ -1,0 +1,99 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <nav aria-label="breadcrumb">
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add Movies</h4>
+                        {% for i in details %}
+                        <form class="forms-sample" action="{% url 'edit_movies' i.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Movie name">Movie Name</label>
+                                <input type="text" class="form-control" id="moviename" placeholder="Movie Name" name="moviename" value="{{i.name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Movie Year">Year</label>
+                                <input type="number" class="form-control" id="movieyear" placeholder="Year" name="movieyear" value="{{i.year}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Movie Lang">Language</label>
+                                <input type="text" class="form-control" id="movielang" placeholder="Language" name="movielang" value="{{i.language}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Current Poster</label>
+                                <div class="image-container">
+                                    <img src="{{i.poster.url}}" alt="failed to load" width="150px">
+                                </div>
+                                <div class="form-group">  
+                                    <label for="newImage">Change Image</label>  
+                                    <input type="file" id="newImage" name="newImage" accept="image/*" class="file-upload-default" style="display:none;">
+                                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('newImage').click()">Add Poster</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="video">Current Trailer</label>
+                                <div class="video-container">
+                                    <video width="100%" controls>
+                                        <source src="{{i.trailer_video.url}}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newtrailer">Change Trailer</label>
+                                <input type="file" id="newtrailer" name="newtrailer" accept="video/*" class="file-upload-default" style="display:none;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('newtrailer').click()">Upload Trailer</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="video">Current Movie</label>
+                                <div class="video-container">
+                                    <video width="100%" controls>
+                                        <source src="{{i.movie_video.url}}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newVideo">Change Movie</label>
+                                <input type="file" id="newVideo" name="newVideo" accept="video/*" class="file-upload-default" style="display:none;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('newVideo').click()">Upload Movies</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        margin-bottom: 10px;
+    }
+
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .file-upload-default {
+        margin-top: 10px; /* Adjust as needed */
+    }
+</style>
+
+{% endblock %}

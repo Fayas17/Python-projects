@@ -1,0 +1,55 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+     <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Song</h4>
+                {% for i in details %}
+                <form class="forms-sample" action="{% url 'edit_songs' i.id %}" method="post" enctype="multipart/form-data" required>
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="songname">Song Name</label>
+                    <input type="text" class="form-control" id="songname" placeholder="Song Name" name="songname" value="{{i.name}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="songyear">Year</label>
+                    <input type="number" class="form-control" id="songyear" placeholder="Year" name="songyear" value="{{i.year}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="songlang">Language</label>
+                    <input type="text" class="form-control" id="songlang" placeholder="Language" name="songlang" value="{{i.language}}" >
+                  </div>
+                  <div class="form-group">
+                    <label for="audio">Current Song</label>
+                    <div class="video-container">
+                        <audio controls>
+                            <source src="{{i.song.url}}" type="audio/mp3">
+                        </audio>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newAudio">Edit Song</label>
+                    <input type="file" id="newAudio" name="newAudio" accept="audio/*" class="file-upload-default" style="display:none;">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('newAudio').click()">Edit Song</button>
+                </div>
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <!-- <button class="btn btn-dark">Cancel</button> -->
+                </form>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}

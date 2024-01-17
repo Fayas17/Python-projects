@@ -1,0 +1,49 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+     <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body"> 
+                <h4 class="card-title">Add Trailer</h4>
+                <form class="forms-sample" method="post" action="{% url 'add_trailer' %}">
+                  {%csrf_token%}
+                <div class="form-group">
+                    <label for="Trailer name">Trailer Name</label>
+                    <input type="text" class="form-control" id="trailername" placeholder="Trailer Name" name="trailername">
+                </div>
+                <div class="form-group">
+                    <label for="Trailer Year">Year</label>
+                    <input type="number" class="form-control" id="traileryear" placeholder="Year" name="traileryear">
+                </div>
+                <div class="form-group">
+                    <label for="Trailer Lang">Language</label>
+                    <input type="text" class="form-control" id="trailerlang" placeholder="Language" name="trailerlang">
+                </div>
+                <div class="form-group">
+                  <label for="video">Select Video:</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" id="video" name="video" accept="video/*" class="custom-file-input">
+                      <label class="custom-file-label" for="video">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <!-- <button class="btn btn-dark">Cancel</button> -->
+                </form>
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}

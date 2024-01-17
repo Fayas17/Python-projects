@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+
+{% block movies %}
+
+<style>
+
+    /* ... (your existing styles) ... */
+
+/* New styles for left-side navigation bar */
+.left-sidebar {
+    position: fixed;
+    top: 10%; /* Cut off by 10% from the top */
+    left: 0;
+    width: 30%;
+    height: 90%; /* Takes 90% of the height */
+    background-color: #000; /* Choose your background color */
+    color: #fff; /* Choose your text color */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable scrolling if content exceeds the height */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.left-sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.left-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-sidebar li {
+    margin-bottom: 10px;
+}
+
+/* Adjust main content to make space for the sidebar */
+main {
+    margin-left: 30%; /* Match the width of the sidebar */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Styles for the 10% section at the top of the sidebar */
+.top-section {
+    margin-bottom: 20px;
+}
+
+.top-section a {
+    color: #fff; /* Choose your link color */
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+</style>
+
+<!-- ... (your existing HTML) ... -->
+
+<!-- Left Sidebar -->
+<div class="left-sidebar">
+    <!-- Top 10% Section with Home and Search -->
+    <div class="top-section">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="#" class="search-toggle">Search</a>
+    </div>
+
+    <!-- Rest of the Sidebar Content -->
+    <h2>Sidebar Title</h2>
+    <ul>
+        <li><a href="#">Sidebar Item 1</a></li>
+        <li><a href="#">Sidebar Item 2</a></li>
+        <!-- Add more items as needed -->
+    </ul>
+</div>
+    
+
+{% endblock %}
+

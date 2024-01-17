@@ -1,0 +1,207 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block movies %}
+
+   <!-- Header End -->
+   <!-- Banner Start -->
+   {% for i in details %}
+   <div class="video-container iq-main-slider">
+      {% if 'u_id' in request.session %}
+         <video class="video d-block" controls loop>
+            <source src="{{i.movie_video.url}}" type="video/mp4">
+         </video>
+      {% else %}
+         <h3>Login!!!</h3>
+      {% endif %}
+   </div>
+   {% endfor %}
+   <!-- Banner End -->
+   <!-- MainContent -->
+   <div class="main-content movi">
+      <section class="movie-detail container-fluid">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="trending-info g-border">
+                  {% for i in details %}
+                  <h1 class="trending-text big-title text-uppercase mt-0">{{i.name}}</h1>
+                  <ul class="p-0 list-inline d-flex align-items-center movie-content">
+                     {% for j in genre %}
+                     <li class="text-white">{{j.name}}</li>
+                     {% endfor %}
+                  </ul>
+                  <div class="d-flex align-items-center text-white text-detail">
+                     <span class="badge badge-secondary p-3">13+</span>
+                     <span class="ml-3">3h 15m</span>
+                     <span class="trending-year">{{i.year}}</span>
+                  </div>
+                  <p class="trending-dec w-100 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                     industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                     unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                     survived not only five centuries.</p>
+                  <ul class="list-inline p-0 mt-4 share-icons music-play-lists">
+                     <li><span><i class="ri-add-line"></i></span></li>
+                     <li><span><i class="ri-heart-fill"></i></span></li>
+                     <li class="share">
+                        <span><i class="ri-share-fill"></i></span>
+                        <div class="share-box">
+                           <div class="d-flex align-items-center">
+                              <a href="#" class="share-ico"><i class="ri-facebook-fill"></i></a>
+                              <a href="#" class="share-ico"><i class="ri-twitter-fill"></i></a>
+                              <a href="#" class="share-ico"><i class="ri-links-fill"></i></a>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="iq-favorites" class="s-margin">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 overflow-hidden">
+                  <div class="iq-main-header d-flex align-items-center justify-content-between">
+                     <h4 class="main-title">More Like This</h4>
+                  </div>
+                  <div class="favorites-contens">
+                     <ul class="list-inline favorites-slider row p-0 mb-0">
+                        {% for i in related_movies %}
+                        <li class="slide-item">
+                           <a href="{% url 'show_details' i.id %}">
+                              <div class="block-images position-relative">
+                                 <div class="img-box">
+                                    <img src="{{i.movie_name.poster.url}}" class="img-fluid" alt="">
+                                 </div>
+                                 <div class="block-description">
+                                    <h6>The Lost Journey</h6>
+                                    <div class="movie-time d-flex align-items-center my-2">
+                                       <div class="badge badge-secondary p-1 mr-2">20+</div>
+                                       <span class="text-white">2h 15m</span>
+                                    </div>
+                                    <div class="hover-buttons">
+                                       <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                          Play
+                                          Now</span>
+                                    </div>
+                                 </div>
+                                 <div class="block-social-info">
+                                    <ul class="list-inline p-0 m-0 music-play-lists">
+                                       <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                       <li><span><i class="ri-heart-fill"></i></span></li>
+                                       <li><span><i class="ri-add-line"></i></span></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </a>
+                           {% endfor %}
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="iq-upcoming-movie">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12 overflow-hidden">
+                  <div class="iq-main-header d-flex align-items-center justify-content-between">
+                     <h4 class="main-title">Drama</h4>
+                     <a href="movie-category.html" class="text-primary">View all</a>
+                  </div>
+                  <div class="upcoming-contens">
+                     <ul class="favorites-slider list-inline  row p-0 mb-0">
+                        
+                        <li class="slide-item">
+                           <a href="movie-details.html">
+                              <div class="block-images position-relative">
+                                 <div class="img-box">
+                                    <img src="" class="img-fluid" alt="">
+                                 </div>
+                                 <div class="block-description">
+                                    <h6>The Last Breath</h6>
+                                    <div class="movie-time d-flex align-items-center my-2">
+                                       <div class="badge badge-secondary p-1 mr-2">5+</div>
+                                       <span class="text-white">2h 30m</span>
+                                    </div>
+                                    <div class="hover-buttons">
+                                       <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
+                                          Play Now
+                                       </span>
+                                    </div>
+                                 </div>
+                                 <div class="block-social-info">
+                                    <ul class="list-inline p-0 m-0 music-play-lists">
+                                       <li><span><i class="ri-volume-mute-fill"></i></span></li>
+                                       <li><span><i class="ri-heart-fill"></i></span></li>
+                                       <li><span><i class="ri-add-line"></i></span></li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+   <footer class="mb-0">
+      <div class="container-fluid">
+         <div class="block-space">
+            <div class="row">
+               <div class="col-lg-3 col-md-4">
+                  <ul class="f-link list-unstyled mb-0">
+                     <li><a href="#">About Us</a></li>
+                     <li><a href="movie-category.html">Movies</a></li>
+                     <li><a href="show-category.html">Tv Shows</a></li>
+                     <li><a href="#">Coporate Information</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-4">
+                  <ul class="f-link list-unstyled mb-0">
+                     <li><a href="#">Privacy Policy</a></li>
+                     <li><a href="#">Terms & Conditions</a></li>
+                     <li><a href="#">Help</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-4">
+                  <ul class="f-link list-unstyled mb-0">
+                     <li><a href="#">FAQ</a></li>
+                     <li><a href="#">Cotact Us</a></li>
+                     <li><a href="#">Legal Notice</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-3 col-md-12 r-mt-15">
+                  <div class="d-flex">
+                     <a href="#" class="s-icon">
+                        <i class="ri-facebook-fill"></i>
+                     </a>
+                     <a href="#" class="s-icon">
+                        <i class="ri-skype-fill"></i>
+                     </a>
+                     <a href="#" class="s-icon">
+                        <i class="ri-linkedin-fill"></i>
+                     </a>
+                     <a href="#" class="s-icon">
+                        <i class="ri-whatsapp-fill"></i>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="copyright py-2">
+         <div class="container-fluid">
+            <p class="mb-0 text-center font-size-14 text-body">STREAMIT - 2020 All Rights Reserved</p>
+         </div>
+      </div>
+   </footer>
+   <!-- MainContent End-->
+
+   {% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <nav aria-label="breadcrumb">
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add Movies</h4>
+                        {% for i in details %}
+                        <form class="forms-sample" action="{% url 'edit_trailer' i.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Movie name">Trailer Name</label>
+                                <input type="text" class="form-control" id="trailername" placeholder="Movie Name" name="trailername" value="{{i.name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Movie Year">Year</label>
+                                <input type="number" class="form-control" id="traileryear" placeholder="Year" name="traileryear" value="{{i.year}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="Movie Lang">Language</label>
+                                <input type="text" class="form-control" id="trailerlang" placeholder="Language" name="trailerlang" value="{{i.language}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="video">Current Video</label>
+                                <div class="video-container">
+                                    <video width="100%" controls>
+                                        <source src="{{i.video.url}}" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="newVideo">Upload New Video</label>
+                                <input type="file" id="newVideo" name="newVideo" accept="video/*" class="file-upload-default" style="display:none;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('newVideo').click()">Upload New Video</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        margin-bottom: 10px;
+    }
+
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .file-upload-default {
+        margin-top: 10px; /* Adjust as needed */
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+     <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Genres</h4>
+                <form class="forms-sample" action="{% url 'movie_genres' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="Movie id">Movie Name</label>
+                        <select name="movie_name" id="">
+                          <option value="">---Select Movie---</option>
+                          {% for i in movies %}
+                          <option value="{{i.id}}">{{i.name}}</option>
+                          {% endfor %}
+                        </select>
+                <div class="form-group">
+                    <label for="Genres">Genre</label>
+                    <input type="text" class="form-control" id="genres" placeholder="Add Genres" name="genres">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <!-- <button class="btn btn-dark">Cancel</button> -->
+                </form>
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}

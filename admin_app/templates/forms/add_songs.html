@@ -1,0 +1,53 @@
+{% extends 'admin_index.html' %}
+
+{% block trailer %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <nav aria-label="breadcrumb">
+        </nav>
+      </div>
+     <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Song</h4>
+                <form class="forms-sample" action="{% url 'add_songs' %}" method="post" enctype="multipart/form-data" required>
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="songname">Song Name</label>
+                    <input type="text" class="form-control" id="songname" placeholder="Song Name" name="songname">
+                  </div>
+                  <div class="form-group">
+                    <label for="songyear">Year</label>
+                    <input type="number" class="form-control" id="songyear" placeholder="Year" name="songyear">
+                  </div>
+                  <div class="form-group">
+                    <label for="songlang">Language</label>
+                    <input type="text" class="form-control" id="songlang" placeholder="Language" name="songlang">
+                  </div>
+                  <div class="form-group">
+                    <label for="audio">Select Audio:</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="audio" name="audio" accept="audio/*">
+                        <label class="custom-file-label" for="audio">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <!-- <button class="btn btn-dark">Cancel</button> -->
+                </form>
+                
+                
+                
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+
+{% endblock %}
