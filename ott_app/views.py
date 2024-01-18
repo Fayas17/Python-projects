@@ -68,6 +68,23 @@ def login(request):
            request.session['phonenumber_u'] = data['phone'] 
            request.session['username_u'] = username
            request.session['password_u'] = password
+           
+           user = request.session.get('u_id')
+           if Subscribed.objects.filter(uid = user, status = 'active').exists():
+               todays_date = datetime.datetime.now()
+
+               expiry_date = Subscribed.objects.get(uid = user, status = 'active').expiry
+               subscription_id = Subscribed.objects.get(uid = user, status = 'active').pk
+               todays_date = todays_date.date()
+               if todays_date>expiry_date:
+                   Subscribed.objects.filter(id = subscription_id).update(status = 'inactive')
+            #    print()
+            #    print(expiry_date)
+
+           else:
+               return redirect(pricing)
+    
+
            return redirect('index') 
         
         elif User.objects.filter(email=username).exists():
